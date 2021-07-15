@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       //应用名称
-      title: 'Flutter Demo',
+      title: 'Dinerscuisine',
       theme: new ThemeData(
         //蓝色主题
         primarySwatch: Colors.blue,

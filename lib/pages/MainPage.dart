@@ -1,60 +1,74 @@
+import 'package:demo2/pages/learn/Learn.dart';
+import 'package:demo2/pages/market/MarketPage.dart';
+import 'package:demo2/pages/notification/Notification.dart';
 import 'package:flutter/material.dart';
-import 'package:demo2/pages/FindPage.dart';
-import 'package:demo2/pages/HomePage.dart';
-import 'package:demo2/pages/MinePage.dart';
+import 'package:demo2/pages/home/FindPage.dart';
+import 'package:demo2/pages/home/HomePage.dart';
+import 'package:demo2/pages/mine/MinePage.dart';
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
         //去除右上标的Debug
-        debugShowCheckedModeBanner: false, home: new MainPageWidget());
+        debugShowCheckedModeBanner: false,
+        home: new MainPageWidget());
   }
 }
 
 //有状态的Widget
 class MainPageWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {   //重写了createState()函数，这函数返回一个State<StatefulWidget>
-    return new MainPageState();  //返回用户定义的类MainPageWidget的MainPageState()实例
+  State<StatefulWidget> createState() {
+    //重写了createState()函数，这函数返回一个State<StatefulWidget>
+    return new MainPageState(); //返回用户定义的类MainPageWidget的MainPageState()实例
   }
 }
+
 //继承了 State<MainPageWidget>
 class MainPageState extends State<MainPageWidget> {
   int _tabIndex = 0;
   var tabImages;
-  var appBarTitles = ['首页', '发现', '我的'];
+  var appBarIcons = [
+    Icons.home,
+    Icons.subtitles_outlined,
+    Icons.add_shopping_cart,
+    Icons.notifications,
+    Icons.tag_faces
+  ];
+  var appBarTitles = ['Home', 'Learn', 'Market', 'Notification', 'Me'];
   //存放子页面
   var _pageList;
 
   /*
    * 根据选择获得对应的normal或是press的icon
    */
-  Image getTabIcon(int curIndex) {
+  Icon getTabIcon(int curIndex) {
     if (curIndex == _tabIndex) {
-      return tabImages[curIndex][1];
+      return Icon(appBarIcons[curIndex], color: Colors.orange);
     }
-    return tabImages[curIndex][0];
+    return Icon(appBarIcons[curIndex], color: const Color(0xff515151));
   }
+
   /*
    * 获取bottomTab的颜色和文字
    */
   Text getTabTitle(int curIndex) {
     if (curIndex == _tabIndex) {
       return new Text(appBarTitles[curIndex],
-          style: new TextStyle(fontSize: 14.0, color: const Color(0xff1296db)));
+          style: new TextStyle(fontSize: 14.0, color: Colors.orange));
     } else {
       return new Text(appBarTitles[curIndex],
           style: new TextStyle(fontSize: 14.0, color: const Color(0xff515151)));
     }
   }
+
   /*
    * 根据image路径获取图片
    */
   Image getTabImage(path) {
     return new Image.asset(path, width: 24.0, height: 24.0);
   }
-
 
   void initData() {
     /*
@@ -63,14 +77,21 @@ class MainPageState extends State<MainPageWidget> {
     tabImages = [
       [getTabImage('images/home.png'), getTabImage('images/home_selected.png')],
       [getTabImage('images/find.png'), getTabImage('images/find_selected.png')],
-      [getTabImage('images/mine.png'), getTabImage('images/mine_selected.png')]
+      [getTabImage('images/mine.png'), getTabImage('images/mine_selected.png')],
+      [
+        getTabImage('images/notification_selected.png'),
+        getTabImage('images/notification_selected.png')
+      ],
+      [getTabImage('images/me.png'), getTabImage('images/me.png')]
     ];
     /*
      * 三个子界面
      */
     _pageList = [
       new HomePage(),
-      new FindPage(),
+      new LearnPage(),
+      new MarketPage(),
+      new NotificationPage(),
       new MinePage(),
     ];
   }
@@ -85,14 +106,17 @@ class MainPageState extends State<MainPageWidget> {
         bottomNavigationBar: new BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             new BottomNavigationBarItem(
-                //icon: getTabIcon(0), title: getTabTitle(0)),
-                icon:Icon(Icons.landscape),title: getTabTitle(0)),
+                icon: getTabIcon(0),
+                // icon: Icon(Icons.home),
+                title: getTabTitle(0)),
             new BottomNavigationBarItem(
-                //icon: getTabIcon(1), title: getTabTitle(1)),
-                icon:Icon(Icons.looks),title: getTabTitle(1)),
+                icon: getTabIcon(1), title: getTabTitle(1)),
             new BottomNavigationBarItem(
-                //icon: getTabIcon(2), title: getTabTitle(2)),
-                icon:Icon(Icons.account_circle),title: getTabTitle(2)),
+                icon: getTabIcon(2), title: getTabTitle(2)),
+            new BottomNavigationBarItem(
+                icon: getTabIcon(3), title: getTabTitle(3)),
+            new BottomNavigationBarItem(
+                icon: getTabIcon(4), title: getTabTitle(4)),
           ],
           //bottom文字显示控制
           type: BottomNavigationBarType.fixed,

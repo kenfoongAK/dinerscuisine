@@ -18,7 +18,7 @@ class Page extends State<FindPage> {
   Widget layout(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title:Text('发现'),
+        title: Text('发现'),
       ),
       body: new ListView(
         children: <Widget>[
@@ -31,12 +31,6 @@ class Page extends State<FindPage> {
       ),
     );
   }
-
-  Widget buildAppBar(BuildContext context) {
-    return new AppBar(title: const Text('发现'));
-  }
-
-
 
   Widget header(BuildContext context) {
     //return new Image.network(
