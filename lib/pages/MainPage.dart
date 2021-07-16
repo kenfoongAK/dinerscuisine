@@ -1,6 +1,7 @@
 import 'package:demo2/pages/learn/Learn.dart';
 import 'package:demo2/pages/market/MarketPage.dart';
 import 'package:demo2/pages/notification/Notification.dart';
+import 'package:demo2/pages/other/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:demo2/pages/home/FindPage.dart';
 import 'package:demo2/pages/home/HomePage.dart';
@@ -90,7 +91,7 @@ class MainPageState extends State<MainPageWidget> {
     _pageList = [
       new HomePage(),
       new LearnPage(),
-      new MarketPage(),
+      new PaymentPage(),
       new NotificationPage(),
       new MinePage(),
     ];
