@@ -1,0 +1,45 @@
+stages:
+- build
+- deploy
+- configure
+
+build-app-image:
+  stage:build
+  rules:
+    - if:'$CI_COMMIT_BRANCH =="staging"'
+  variables:
+    IMAGE_NAME:"$CI_REGISTRY_IMAGE/$CI_COMMIT_BRANCH"
+  image: dockers:latest
+  service:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build -t "${IMAGE_NAME}:latest"
+    - docker push "${IMAGE_NAME}:latest"
+
+deploy-kubernetes-compoenets:
+ stage:deploy
+ rules:
+ - if:'$CI_COMMIT_BRANCH =="staging"'
+ variables:
+  IMAGE_TAG:"$CI_REGISTRY_IMAGE/$CI_COMMIT_BRANCH:latest"
+image:
+  name:bitnami/kubectl:latest
+  entrypoint:[""]
+enviroment: [""]
+script:
+- bash ./kubernetes/scripts/deploy_kubernetes_components
+
+create-mongodb-user:
+  stage:configure
+  rules:
+  - if:'$CI_COMMIT_BRANCH == "staging"'
+    when:manual
+    allow_failure:true
+  image:
+    name:bitnami/kubectl:latest
+    entrypoint:[""]
+  environment: "$CI_COMMIT_BRANCH"
+  script:
+    - bash ./kubernetes/scripts/create_mongodb_user
