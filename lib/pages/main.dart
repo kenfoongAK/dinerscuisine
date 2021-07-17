@@ -8,13 +8,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       //应用名称
-      title: 'Flutter Demo',
+      title: 'Dinerscuisine',
       theme: new ThemeData(
         //蓝色主题
         primarySwatch: Colors.blue,
       ),
       //应用首页路由
-      debugShowCheckedModeBanner: false,home: MainPage(),//启动MainPage
+      debugShowCheckedModeBanner: false, home: MainPage(), //启动MainPage
     );
   }
 }
