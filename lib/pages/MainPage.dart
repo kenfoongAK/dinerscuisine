@@ -31,11 +31,11 @@ class MainPageState extends State<MainPageWidget> {
   int _tabIndex = 0;
   var tabImages;
   var appBarIcons = [
-    Icons.home,
+    Icons.home_outlined,
     Icons.subtitles_outlined,
     Icons.add_shopping_cart,
-    Icons.notifications,
-    Icons.tag_faces
+    Icons.notifications_none,
+    Icons.perm_identity
   ];
   var appBarTitles = ['Home', 'Learn', 'Market', 'Notification', 'Me'];
   //存放子页面
@@ -46,7 +46,8 @@ class MainPageState extends State<MainPageWidget> {
    */
   Icon getTabIcon(int curIndex) {
     if (curIndex == _tabIndex) {
-      return Icon(appBarIcons[curIndex], color: Colors.orange);
+      return Icon(appBarIcons[curIndex],
+          color: Color.fromARGB(255, 104, 47, 157));
     }
     return Icon(appBarIcons[curIndex], color: const Color(0xff515151));
   }
@@ -57,7 +58,8 @@ class MainPageState extends State<MainPageWidget> {
   Text getTabTitle(int curIndex) {
     if (curIndex == _tabIndex) {
       return new Text(appBarTitles[curIndex],
-          style: new TextStyle(fontSize: 14.0, color: Colors.orange));
+          style: new TextStyle(
+              fontSize: 14.0, color: Color.fromARGB(255, 104, 47, 157)));
     } else {
       return new Text(appBarTitles[curIndex],
           style: new TextStyle(fontSize: 14.0, color: const Color(0xff515151)));
@@ -91,7 +93,7 @@ class MainPageState extends State<MainPageWidget> {
     _pageList = [
       new HomePage(),
       new LearnPage(),
-      new PaymentPage(),
+      new MarketPage(),
       new NotificationPage(),
       new MinePage(),
     ];

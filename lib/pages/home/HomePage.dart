@@ -1,6 +1,8 @@
 import 'package:demo2/pages/home/FindPage.dart';
+import 'package:demo2/pages/home/detailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class Page extends State<HomePage> {
+  String tab = "recommad";
   @override
   Widget build(BuildContext context) {
     return layout(context);
@@ -20,127 +23,77 @@ class Page extends State<HomePage> {
   Widget layout(BuildContext context) {
     /*24 is for notification bar on Android*/
     return new Scaffold(
-      appBar: AppBar(
-        shadowColor: Colors.white,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Recommend',
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          new IconButton(
-            icon: new Icon(Icons.search),
-            color: Colors.grey[200],
-            highlightColor: Colors.grey[200],
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => FindPage()));
-            },
+        appBar: AppBar(
+          shadowColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 104, 47, 157),
+          title: Row(
+            children: [
+              new GestureDetector(
+                onTap: () {
+                  setState(() {
+                    tab = "follow";
+                  });
+                },
+                child: Text(
+                  'Follow',
+                  style: TextStyle(
+                      color: Colors.white,
+                      decoration: tab == "follow"
+                          ? TextDecoration.underline
+                          : TextDecoration.none),
+                ),
+              ),
+              SizedBox(width: 10),
+              new GestureDetector(
+                onTap: () {
+                  setState(() {
+                    tab = "recommad";
+                  });
+                },
+                child: Text(
+                  'Recommend',
+                  style: TextStyle(
+                      color: Colors.white,
+                      decoration: tab == "recommad"
+                          ? TextDecoration.underline
+                          : TextDecoration.none),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: ListView(children: <Widget>[
-        Container(
-            height: 400,
-            child: ListView(
-              // This next line does the trick.
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                SizedBox(width: 10),
-                header(context),
-                header(context),
-                header(context),
-                header(context),
-                header(context),
-                header(context),
-                header(context),
-                header(context),
-                SizedBox(width: 10),
-              ],
-            )),
-        GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: (2 / 1),
-          physics:
-              NeverScrollableScrollPhysics(), // to disable GridView's scrolling
-          shrinkWrap: true, // You won't see infinite size error
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 50.0,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                onPressed: () {},
-                padding: EdgeInsets.all(10.0),
-                color: Colors.grey[300],
-                textColor: Colors.white,
-                child: Text("All Course", style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 50.0,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                onPressed: () {},
-                padding: EdgeInsets.all(10.0),
-                color: Colors.grey[300],
-                textColor: Colors.white,
-                child: Text("Wait", style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 50.0,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                onPressed: () {},
-                padding: EdgeInsets.all(10.0),
-                color: Colors.grey[300],
-                textColor: Colors.white,
-                child: Text("Wait", style: TextStyle(fontSize: 15)),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.all(10),
-              height: 50.0,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-                onPressed: () {},
-                padding: EdgeInsets.all(10.0),
-                color: Colors.grey[300],
-                textColor: Colors.white,
-                child: Text("Wait", style: TextStyle(fontSize: 15)),
-              ),
+          actions: [
+            new IconButton(
+              icon: new Icon(Icons.search),
+              color: Colors.grey[200],
+              highlightColor: Colors.grey[200],
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FindPage()));
+              },
             ),
           ],
         ),
-        ads(context),
-      ]),
-    );
+        body: tab == "recommad" ? recommand() : follow());
   }
 
   Widget header(BuildContext context) {
     //调试线显示
     // debugPaintSizeEnabled = true;
-    return Container(
-        margin: EdgeInsets.all(10),
-        height: 400,
-        width: 200,
-        child: Image.asset(
-          //加载的图片
-          'assets/images/daily.jpg',
-          fit: BoxFit.fill,
-          //对齐方式
-        ));
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DetailPage()));
+        },
+        child: Container(
+            margin: EdgeInsets.all(10),
+            height: 400,
+            width: 200,
+            child: Image.asset(
+              //加载的图片
+              'assets/images/daily.jpg',
+              fit: BoxFit.fill,
+              //对齐方式
+            )));
   }
 
   Widget ads(BuildContext context) {
@@ -152,5 +105,146 @@ class Page extends State<HomePage> {
         alignment: Alignment.center,
         height: 100,
         child: Text("ads"));
+  }
+
+  Widget header2(BuildContext context, String img) {
+    var size = MediaQuery.of(context).size;
+
+    //调试线显示
+    // debugPaintSizeEnabled = true;
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DetailPage()));
+        },
+        child: Container(
+            margin: EdgeInsets.all(10),
+            child: Column(children: [
+              Image.asset(
+                //加载的图片
+                img,
+                width: (size.width / 2),
+                height: (size.width / 2),
+                fit: BoxFit.fill,
+                //对齐方式
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "教学",
+                  textAlign: TextAlign.left,
+                ),
+              )
+            ])));
+  }
+
+  ListView follow() {
+    return ListView(children: <Widget>[
+      GridView.count(
+          // childAspectRatio: (0.5 / 1),
+          crossAxisCount: 2,
+          childAspectRatio: MediaQuery.of(context).size.height / (800),
+          physics:
+              NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+          shrinkWrap: true, // You won't see infinite size error
+          children: <Widget>[
+            header2(context, 'assets/images/1.jpg'),
+            header2(context, 'assets/images/2.jpg'),
+            header2(context, 'assets/images/3.jpg'),
+            header2(context, 'assets/images/4.jpg'),
+            header2(context, 'assets/images/1.jpg'),
+            header2(context, 'assets/images/3.jpg'),
+            header2(context, 'assets/images/2.jpg'),
+          ])
+    ]);
+  }
+
+  ListView recommand() {
+    return ListView(children: <Widget>[
+      Container(
+          height: 400,
+          child: ListView(
+            // This next line does the trick.
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              SizedBox(width: 10),
+              header(context),
+              header(context),
+              header(context),
+              header(context),
+              header(context),
+              header(context),
+              header(context),
+              header(context),
+              SizedBox(width: 10),
+            ],
+          )),
+      GridView.count(
+        crossAxisCount: 2,
+        childAspectRatio: (3 / 1),
+        physics:
+            NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+        shrinkWrap: true, // You won't see infinite size error
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 50.0,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
+              onPressed: () {},
+              padding: EdgeInsets.all(10.0),
+              color: Color.fromARGB(255, 104, 47, 157),
+              textColor: Colors.white,
+              child: Text("All Course", style: TextStyle(fontSize: 15)),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 50.0,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
+              onPressed: () {},
+              padding: EdgeInsets.all(10.0),
+              color: Color.fromARGB(255, 104, 47, 157),
+              textColor: Colors.white,
+              child: Text("Wait", style: TextStyle(fontSize: 15)),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 50.0,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
+              onPressed: () {},
+              padding: EdgeInsets.all(10.0),
+              color: Color.fromARGB(255, 104, 47, 157),
+              textColor: Colors.white,
+              child: Text("Wait", style: TextStyle(fontSize: 15)),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            height: 50.0,
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0),
+              ),
+              onPressed: () {},
+              padding: EdgeInsets.all(10.0),
+              color: Color.fromARGB(255, 104, 47, 157),
+              textColor: Colors.white,
+              child: Text("Wait", style: TextStyle(fontSize: 15)),
+            ),
+          ),
+        ],
+      ),
+      ads(context),
+    ]);
   }
 }

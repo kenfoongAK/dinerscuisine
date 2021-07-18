@@ -21,40 +21,55 @@ class Page extends State<MarketPage> {
     return new Scaffold(
         appBar: AppBar(
           shadowColor: Colors.white,
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 104, 47, 157),
           title: Text(
             'Market',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
-        body: Center(
-          child: Text("Comming Soon"),
-        ));
+        body: ListView(children: <Widget>[
+          GridView.count(
+              // childAspectRatio: (0.5 / 1),
+              crossAxisCount: 2,
+              childAspectRatio: MediaQuery.of(context).size.height / (800),
+              physics:
+                  NeverScrollableScrollPhysics(), // to disable GridView's scrolling
+              shrinkWrap: true, // You won't see infinite size error
+              children: <Widget>[
+                header(context, 'assets/images/1.jpg'),
+                header(context, 'assets/images/2.jpg'),
+                header(context, 'assets/images/3.jpg'),
+                header(context, 'assets/images/4.jpg'),
+                header(context, 'assets/images/1.jpg'),
+                header(context, 'assets/images/3.jpg'),
+                header(context, 'assets/images/2.jpg'),
+              ])
+        ]));
   }
 
-  Widget header(BuildContext context) {
+  Widget header(BuildContext context, String img) {
+    var size = MediaQuery.of(context).size;
+
     //调试线显示
     // debugPaintSizeEnabled = true;
     return Container(
         margin: EdgeInsets.all(10),
-        height: 400,
-        width: 200,
-        child: Image.asset(
-          //加载的图片
-          'assets/images/daily.jpg',
-          fit: BoxFit.fill,
-          //对齐方式
-        ));
-  }
-
-  Widget ads(BuildContext context) {
-    //调试线显示
-    // debugPaintSizeEnabled = true;
-    return Container(
-        color: Colors.grey,
-        margin: EdgeInsets.all(10),
-        alignment: Alignment.center,
-        height: 100,
-        child: Text("ads"));
+        child: Column(children: [
+          Image.asset(
+            //加载的图片
+            img,
+            width: (size.width / 2),
+            height: (size.width / 2),
+            fit: BoxFit.fill,
+            //对齐方式
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "食物上市",
+              textAlign: TextAlign.left,
+            ),
+          )
+        ]));
   }
 }
