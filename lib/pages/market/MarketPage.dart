@@ -28,22 +28,29 @@ class Page extends State<MarketPage> {
           ),
         ),
         body: ListView(children: <Widget>[
-          GridView.count(
-              // childAspectRatio: (0.5 / 1),
-              crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).size.height / (800),
-              physics:
-                  NeverScrollableScrollPhysics(), // to disable GridView's scrolling
-              shrinkWrap: true, // You won't see infinite size error
-              children: <Widget>[
-                header(context, 'assets/images/1.jpg'),
-                header(context, 'assets/images/2.jpg'),
-                header(context, 'assets/images/3.jpg'),
-                header(context, 'assets/images/4.jpg'),
-                header(context, 'assets/images/1.jpg'),
-                header(context, 'assets/images/3.jpg'),
-                header(context, 'assets/images/2.jpg'),
-              ])
+          Row(
+            children: [
+              header(context, 'assets/images/1.jpg'),
+              header(context, 'assets/images/2.jpg'),
+            ],
+          ),
+          Row(
+            children: [
+              header(context, 'assets/images/3.jpg'),
+              header(context, 'assets/images/4.jpg'),
+            ],
+          ),
+          Row(
+            children: [
+              header(context, 'assets/images/1.jpg'),
+              header(context, 'assets/images/3.jpg'),
+            ],
+          ),
+          Row(
+            children: [
+              header(context, 'assets/images/2.jpg'),
+            ],
+          ),
         ]));
   }
 
@@ -58,8 +65,8 @@ class Page extends State<MarketPage> {
           Image.asset(
             //加载的图片
             img,
-            width: (size.width / 2),
-            height: (size.width / 2),
+            width: (size.width / 2) - 20,
+            height: (size.width / 2) - 20,
             fit: BoxFit.fill,
             //对齐方式
           ),
