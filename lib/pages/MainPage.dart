@@ -37,7 +37,7 @@ class MainPageState extends State<MainPageWidget> {
     Icons.notifications_none,
     Icons.perm_identity
   ];
-  var appBarTitles = ['Home', 'Learn', 'Market', 'Notification', 'Me'];
+  var appBarTitles = ['Home', 'Learn', 'Market', 'Message', 'Me'];
   //存放子页面
   var _pageList;
 
