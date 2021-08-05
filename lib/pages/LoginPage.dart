@@ -23,8 +23,8 @@ class Page extends State<LoginPage> {
     try {
       var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
       var request = http.Request(
-          'POST', Uri.parse('http://shanghai168.com:8801/api/login/'));
-      request.bodyFields = {'username': 'aknormal', 'password': '1234'};
+          'POST', Uri.parse('https://dweet.io/dweet/for/my-thing-name'));
+      request.bodyFields = {};
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
