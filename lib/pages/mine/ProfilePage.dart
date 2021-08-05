@@ -22,7 +22,7 @@ class Page extends State<ProfilePage> {
           backgroundColor: Color.fromARGB(255, 104, 47, 157),
           shadowColor: Colors.white,
           title: Text(
-            'Desesrt party',
+            'Dessert party',
             style: TextStyle(color: Colors.white),
           ),
         ),

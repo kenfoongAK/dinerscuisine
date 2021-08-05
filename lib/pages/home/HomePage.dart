@@ -1,5 +1,9 @@
 import 'package:demo2/pages/home/FindPage.dart';
 import 'package:demo2/pages/home/detailPage.dart';
+import 'package:demo2/pages/home/popular/AllCoursesPage.dart';
+import 'package:demo2/pages/home/popular/Hot.dart';
+import 'package:demo2/pages/home/popular/Live.dart';
+import 'package:demo2/pages/home/popular/Sort.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:video_player/video_player.dart';
@@ -77,6 +81,8 @@ class Page extends State<HomePage> {
   }
 
   Widget header(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     //调试线显示
     // debugPaintSizeEnabled = true;
     return GestureDetector(
@@ -86,14 +92,17 @@ class Page extends State<HomePage> {
         },
         child: Container(
             margin: EdgeInsets.all(10),
-            height: 400,
-            width: 200,
-            child: Image.asset(
-              //加载的图片
-              'assets/images/daily.jpg',
-              fit: BoxFit.fill,
-              //对齐方式
-            )));
+            height: (size.width / 2),
+            width: (size.width / 2),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Image.asset(
+                    //加载的图片
+                    'assets/images/daily.jpg',
+                    width: (size.width / 2) - 20,
+                    fit: BoxFit.cover
+                    //对齐方式
+                    ))));
   }
 
   Widget ads(BuildContext context) {
@@ -167,9 +176,11 @@ class Page extends State<HomePage> {
   }
 
   ListView recommand() {
+    var size = MediaQuery.of(context).size;
+
     return ListView(children: <Widget>[
       Container(
-          height: 400,
+          height: (size.width / 2),
           child: ListView(
             // This next line does the trick.
             scrollDirection: Axis.horizontal,
@@ -186,6 +197,14 @@ class Page extends State<HomePage> {
               SizedBox(width: 10),
             ],
           )),
+      Container(
+          margin: EdgeInsets.only(
+            left: 10,
+          ),
+          child: Text(
+            "Popular",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          )),
       GridView.count(
         crossAxisCount: 2,
         childAspectRatio: (3 / 1),
@@ -200,11 +219,14 @@ class Page extends State<HomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AllCoursePage()));
+              },
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("All Course", style: TextStyle(fontSize: 15)),
+              child: Text("All Courses", style: TextStyle(fontSize: 15)),
             ),
           ),
           Container(
@@ -214,11 +236,14 @@ class Page extends State<HomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LivePage()));
+              },
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("Wait", style: TextStyle(fontSize: 15)),
+              child: Text("Live", style: TextStyle(fontSize: 15)),
             ),
           ),
           Container(
@@ -228,11 +253,14 @@ class Page extends State<HomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HotPage()));
+              },
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("Wait", style: TextStyle(fontSize: 15)),
+              child: Text("Hot", style: TextStyle(fontSize: 15)),
             ),
           ),
           Container(
@@ -242,11 +270,14 @@ class Page extends State<HomePage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SortPage()));
+              },
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("Wait", style: TextStyle(fontSize: 15)),
+              child: Text("Sort", style: TextStyle(fontSize: 15)),
             ),
           ),
         ],

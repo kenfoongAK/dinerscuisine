@@ -1,0 +1,59 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run
+
+## exception
+
+StdinException: StdinException: Error setting terminal echo mode, OS Error: The handle is invalid.
+, errno = 6
+
+```
+#0      Stdin.echoMode= (dart:io-patch/stdio_patch.dart:84:7)
+#1      AnsiTerminal.singleCharMode= (package:flutter_tools/src/base/terminal.dart:261:13)
+#2      TerminalHandler.setupTerminal (package:flutter_tools/src/resident_runner.dart:1494:15)
+#3      RunCommand.runCommand.<anonymous closure> (package:flutter_tools/src/commands/run.dart:651:15)
+#4      _rootRunUnary (dart:async/zone.dart:1362:47)
+#5      _CustomZone.runUnary (dart:async/zone.dart:1265:19)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, 2.2.3, on Microsoft Windows [Version 10.0.19043.1110], locale en-MY)
+    • Flutter version 2.2.3 at C:\xampp8\htdocs\flutter
+    • Framework revision f4abaa0735 (5 weeks ago), 2021-07-01 12:46:11 -0700
+    • Engine revision 241c87ad80
+    • Dart version 2.13.4
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    • Android SDK at C:\Users\Mun Kin\AppData\Local\Android\sdk
+    • Platform android-30, build-tools 29.0.2
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+    • All Android licenses accepted.
+
+[✓] Chrome - develop for the web
+    • Chrome at C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+
+[✓] Android Studio (version 4.1.0)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 1.8.0_242-release-1644-b01)
+
+[✓] VS Code, 64-bit edition (version 1.58.2)
+    • VS Code at C:\Program Files\Microsoft VS Code
+    • Flutter extension version 3.24.0
+
+[✓] Connected device (2 available)
+    • Chrome (web) • chrome • web-javascript • Google Chrome 92.0.4515.107
+    • Edge (web)   • edge   • web-javascript • Microsoft Edge 92.0.902.62
+
+• No issues found!
+```

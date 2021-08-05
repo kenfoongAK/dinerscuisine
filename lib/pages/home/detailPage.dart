@@ -42,20 +42,43 @@ class Page extends State<DetailPage> {
           child: FlickVideoPlayer(flickManager: flickManager),
         ),
         Container(
-          padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-          child: Text(
-            "视频课/共11课",
-            style: TextStyle(
-                fontSize: 18, color: Color.fromARGB(255, 104, 47, 157)),
+          alignment: Alignment.centerLeft,
+          margin: EdgeInsets.only(left: 20, top: 20),
+          child: Icon(
+            Icons.account_circle_outlined,
+            size: 50,
+            color: Color.fromARGB(255, 104, 47, 157),
           ),
         ),
         Container(
-          padding: EdgeInsets.only(left: 20, top: 10, right: 40),
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+          ),
+          child: Text(
+            "浅浅嫣然笑",
+            style: TextStyle(
+                fontSize: 16, color: Color.fromARGB(255, 104, 47, 157)),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(
+            left: 20,
+            right: 20,
+          ),
+          child: Text(
+            "视频课/共11课",
+            style: TextStyle(
+                fontSize: 16, color: Color.fromARGB(255, 104, 47, 157)),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 20, right: 40),
           child: Text(
             "不要传统蛋黄酥新品全麦低糖七种口味蛋黄酥上市",
             style: TextStyle(
                 color: Color.fromARGB(255, 104, 47, 157),
-                fontSize: 20,
+                fontSize: 16,
                 fontWeight: FontWeight.bold),
           ),
         ),
@@ -85,7 +108,6 @@ class Page extends State<DetailPage> {
             Expanded(child: Container()),
             Container(
               margin: EdgeInsets.all(20),
-              height: 50.0,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),

@@ -1,3 +1,4 @@
+import 'package:demo2/pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:demo2/pages/MainPage.dart';
 
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //应用首页路由
-      debugShowCheckedModeBanner: false, home: MainPage(), //启动MainPage
+      // debugShowCheckedModeBanner: false,
+      // home: MainPage(), //启动MainPage
+      home: LoginPage(), //启动MainPage
     );
   }
 }
