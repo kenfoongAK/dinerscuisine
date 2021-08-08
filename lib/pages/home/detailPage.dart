@@ -1,3 +1,4 @@
+import 'package:demo2/pages/other/tutorPage.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flick_video_player/flick_video_player.dart';
@@ -44,11 +45,16 @@ class Page extends State<DetailPage> {
         Container(
           alignment: Alignment.centerLeft,
           margin: EdgeInsets.only(left: 20, top: 20),
-          child: Icon(
-            Icons.account_circle_outlined,
-            size: 50,
-            color: Color.fromARGB(255, 104, 47, 157),
-          ),
+          child: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TutorPage()));
+              },
+              child: Icon(
+                Icons.account_circle_outlined,
+                size: 50,
+                color: Color.fromARGB(255, 104, 47, 157),
+              )),
         ),
         Container(
           padding: EdgeInsets.only(

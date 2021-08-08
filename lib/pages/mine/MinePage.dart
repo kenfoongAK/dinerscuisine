@@ -1,3 +1,4 @@
+import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/mine/AdminWebPage.dart';
 import 'package:demo2/pages/mine/BeATeacherPage.dart';
 import 'package:demo2/pages/mine/CreateCoursePage.dart';
@@ -7,6 +8,7 @@ import 'package:demo2/pages/mine/MyCoursePage.dart';
 import 'package:demo2/pages/mine/ProfilePage.dart';
 import 'package:demo2/pages/mine/SettingPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MinePage extends StatefulWidget {
   @override
@@ -111,12 +113,17 @@ class Page extends State<MinePage> {
           row("Help", HelpPage()),
           row("Setting", SettingPage()),
           row("Admin Web", AdminWebPage()),
+          row("Logout", LoginPage(), logout: true),
         ]));
   }
 
-  Widget row(title, page) {
+  Widget row(title, page, {logout = false}) {
     return InkWell(
-        onTap: () {
+        onTap: () async {
+          if (logout) {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.clear();
+          }
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => page));
         },

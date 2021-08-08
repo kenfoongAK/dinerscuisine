@@ -1,8 +1,11 @@
 import 'dart:convert';
 
+import 'package:demo2/pages/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,34 +17,123 @@ class LoginPage extends StatefulWidget {
 }
 
 class Page extends State<LoginPage> {
+  var titles = ['Login', 'Sign Up'];
+  int tab = 0;
+  TextEditingController username = new TextEditingController(text: "");
+  TextEditingController password = new TextEditingController(text: "");
+  String error = "";
+
   @override
   Widget build(BuildContext context) {
     return layout(context);
   }
 
+  @override
+  void initState() {
+    super.initState();
+    getPage();
+  }
+
+  bool check() {
+    if (username.text == "" || password.text == "") {
+      setState(() {
+        error = "Username and Password can not be empty";
+      });
+      return false;
+    }
+    return true;
+  }
+
+  Future<bool> getPage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getInt("id") != null) {
+      // ignore: unused_element
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => MainPage()),
+          (Route<dynamic> route) => false);
+    }
+    return false;
+  }
+
   Future<void> login() async {
-    try {
-      var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-      var request = http.Request(
-          'POST', Uri.parse('https://dweet.io/dweet/for/my-thing-name'));
-      request.bodyFields = {};
-      request.headers.addAll(headers);
+    if (check()) {
+      EasyLoading.show(status: 'loading...');
 
-      http.StreamedResponse response = await request.send();
+      try {
+        var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+        var request = http.Request(
+            'POST', Uri.parse('https://app.shanghai168.com/api/login/'));
+        request.bodyFields = {
+          'username': username.text,
+          'password': password.text
+        };
+        request.headers.addAll(headers);
 
-      if (response.statusCode == 200) {
-        print(await response.stream.bytesToString());
-      } else {
-        print(response.reasonPhrase);
+        http.StreamedResponse response = await request.send();
+
+        if (response.statusCode == 200) {
+          final result =
+              await json.decode(await response.stream.bytesToString());
+          // Create storage
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setInt('id', result['data']);
+          EasyLoading.dismiss();
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => MainPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          setState(() {
+            error = "Username And Password Not Match";
+          });
+          EasyLoading.dismiss();
+        }
+      } catch (error) {
+        EasyLoading.dismiss();
+        debugPrint('Error: $error');
       }
-    } catch (error) {
-      debugPrint('Error: $error');
     }
     // print(result);
   }
 
-  var titles = ['Login', 'Sign Up'];
-  int tab = 0;
+  Future<void> reg() async {
+    if (check()) {
+      EasyLoading.show(status: 'loading...');
+
+      try {
+        var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+        var request = http.Request(
+            'POST', Uri.parse('https://app.shanghai168.com/api/reg/'));
+        request.bodyFields = {
+          'username': username.text,
+          'password': password.text
+        };
+        request.headers.addAll(headers);
+
+        http.StreamedResponse response = await request.send();
+
+        if (response.statusCode == 200) {
+          final result =
+              await json.decode(await response.stream.bytesToString());
+          // Create storage
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setInt('id', result['data'][0]);
+          EasyLoading.dismiss();
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => MainPage()),
+              (Route<dynamic> route) => false);
+        } else {
+          setState(() {
+            error = "Username Already Exist";
+          });
+          EasyLoading.dismiss();
+        }
+      } catch (error) {
+        EasyLoading.dismiss();
+        debugPrint('Error: $error');
+      }
+    }
+    // print(result);
+  }
 
   Widget layout(BuildContext context) {
     /*24 is for notification bar on Android*/
@@ -66,7 +158,7 @@ class Page extends State<LoginPage> {
           width: 400,
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: new TextField(
-            controller: new TextEditingController(text: 'AK'),
+            controller: username,
             decoration: new InputDecoration(
                 labelText: "Username",
                 labelStyle: TextStyle(
@@ -89,7 +181,7 @@ class Page extends State<LoginPage> {
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: new TextField(
             obscureText: true,
-            controller: new TextEditingController(text: 'AK123456789'),
+            controller: password,
             decoration: new InputDecoration(
               labelText: "Password",
               labelStyle: TextStyle(
@@ -112,7 +204,7 @@ class Page extends State<LoginPage> {
               borderRadius: BorderRadius.circular(18.0),
             ),
             onPressed: () {
-              login();
+              tab == 0 ? login() : reg();
             },
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             color: Color.fromARGB(255, 104, 47, 157),
@@ -133,6 +225,11 @@ class Page extends State<LoginPage> {
                 decoration: TextDecoration.underline),
           ),
         ),
+        Text(
+          "\n" + error,
+          style: TextStyle(
+              color: Colors.red, fontWeight: FontWeight.bold, fontSize: 15),
+        )
       ]),
     ));
   }
