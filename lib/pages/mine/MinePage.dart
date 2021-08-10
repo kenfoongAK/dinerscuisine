@@ -49,7 +49,7 @@ class Page extends State<MinePage> {
           color: Color.fromARGB(255, 104, 47, 157),
           child: Container(
               decoration: new BoxDecoration(
-                  color: Colors.yellow,
+                  color: Colors.white,
                   borderRadius: new BorderRadius.only(
                     topLeft: const Radius.circular(10.5),
                     topRight: const Radius.circular(10.5),
@@ -103,7 +103,7 @@ class Page extends State<MinePage> {
                         },
                         padding: EdgeInsets.all(15.0),
                         color: Colors.red[400],
-                        textColor: Colors.white,
+                        textColor: Colors.grey,
                         child: Row(
                           children: [
                             Text("Profile  ",
@@ -140,7 +140,7 @@ class Page extends State<MinePage> {
               context, MaterialPageRoute(builder: (context) => page));
         },
         child: Container(
-            color: Colors.yellow,
+            color: Colors.white,
             margin: EdgeInsets.symmetric(horizontal: 20),
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
@@ -150,7 +150,7 @@ class Page extends State<MinePage> {
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 13,
-                  color: Colors.grey,
+                  color: Colors.white,
                 ),
               ],
             )));
@@ -165,7 +165,7 @@ class Page extends State<MinePage> {
                   MaterialPageRoute(builder: (context) => ProfilePage()));
             },
             child: Container(
-                color: Colors.white,
+                color: Colors.cream,
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Row(
