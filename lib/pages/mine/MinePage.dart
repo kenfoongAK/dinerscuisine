@@ -2,6 +2,7 @@ import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/mine/AdminWebPage.dart';
 import 'package:demo2/pages/mine/BeATeacherPage.dart';
 import 'package:demo2/pages/mine/CreateCoursePage.dart';
+import 'package:demo2/pages/mine/DinnerCenterPage.dart';
 import 'package:demo2/pages/mine/FeedbackPage.dart';
 import 'package:demo2/pages/mine/HelpPage.dart';
 import 'package:demo2/pages/mine/MyCoursePage.dart';
@@ -162,7 +163,7 @@ class Page extends State<MinePage> {
         InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+                  MaterialPageRoute(builder: (context) => DinnerCenterPage()));
             },
             child: Container(
                 color: Colors.white,

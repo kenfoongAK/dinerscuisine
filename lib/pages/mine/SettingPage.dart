@@ -26,8 +26,27 @@ class Page extends State<SettingPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: Center(
-          child: Text("Coming Soon"),
-        ));
+        body: ListView(children: <Widget>[
+          InkWell(
+              onTap: () async {
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => page));
+              },
+              child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: Row(
+                    children: [
+                      Text("Change Password",
+                          style: TextStyle(color: Colors.grey)),
+                      Expanded(child: Container()),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  )))
+        ]));
   }
 }

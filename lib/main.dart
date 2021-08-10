@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:demo2/pages/FirstPage.dart';
 import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/home/HomePage.dart';
+import 'package:demo2/pages/mine/createCourse/VideoLessonPage.dart';
 import 'package:demo2/pages/other/tutorPage.dart';
 import 'package:flutter/material.dart';
 import 'package:demo2/pages/MainPage.dart';
@@ -30,6 +31,5 @@ class MyApp extends StatelessWidget {
         // ignore: unrelated_type_equality_checks
         home: FirstPage()); //启动MainPage
     // home: TutorPage())
-    ;
   }
 }

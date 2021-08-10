@@ -30,8 +30,15 @@ class Page extends State<VideoLessonPage> {
         backgroundColor: Colors.white,
         body: ListView(
           children: <Widget>[
-            title("Upload a cover"),
-            title("Upload a promo"),
+            Row(
+              children: [
+                Expanded(child: Container()),
+                title("Add picture"),
+                Expanded(child: Container()),
+                title("Add promo"),
+                Expanded(child: Container()),
+              ],
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: new TextField(
@@ -113,27 +120,28 @@ class Page extends State<VideoLessonPage> {
   }
 
   Widget title(title) {
+    var size = MediaQuery.of(context).size;
+    double witdh = (size.width / 2) - 20;
+    double height = witdh * (600 / 500);
+
     return Container(
+        height: height,
+        width: witdh,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 1),
+            borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+            image: DecorationImage(
+              image: AssetImage("assets/images/add_picture.png"),
+              fit: BoxFit.cover,
+            )),
         child: Container(
-      margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-      alignment: Alignment.center,
-      child: RaisedButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(18))),
-          onPressed: () {},
-          padding: EdgeInsets.all(15.0),
-          color: Color.fromARGB(255, 104, 47, 157),
-          textColor: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(title,
-                  style: TextStyle(
-                    fontSize: 15,
-                  )),
-            ],
-          )),
-    ));
+            margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 15),
+            )));
   }
 
   Widget image(BuildContext context, String img) {
@@ -164,12 +172,9 @@ class Page extends State<VideoLessonPage> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
               children: [
-                Text(title,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 104, 47, 157),
-                        fontWeight: FontWeight.bold)),
+                Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
                 Expanded(child: Container()),
-                Text("fill in"),
+                Text("fill in", style: TextStyle(fontWeight: FontWeight.bold)),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 13,
