@@ -31,7 +31,7 @@ class Page extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    getPage();
+    // getPage();
   }
 
   bool check() {
@@ -44,16 +44,16 @@ class Page extends State<LoginPage> {
     return true;
   }
 
-  Future<bool> getPage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getInt("id") != null) {
-      // ignore: unused_element
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MainPage()),
-          (Route<dynamic> route) => false);
-    }
-    return false;
-  }
+  // Future<bool> getPage() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   if (prefs.getInt("id") != null) {
+  //     // ignore: unused_element
+  //     Navigator.of(context).pushAndRemoveUntil(
+  //         MaterialPageRoute(builder: (context) => MainPage()),
+  //         (Route<dynamic> route) => false);
+  //   }
+  //   return false;
+  // }
 
   Future<void> login() async {
     if (check()) {

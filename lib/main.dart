@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:demo2/pages/FirstPage.dart';
 import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/home/HomePage.dart';
 import 'package:demo2/pages/other/tutorPage.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // debugShowCheckedModeBanner: false,
         // home: MainPage()) //启动MainPage
         // ignore: unrelated_type_equality_checks
-        home: LoginPage()); //启动MainPage
+        home: FirstPage()); //启动MainPage
     // home: TutorPage())
     ;
   }

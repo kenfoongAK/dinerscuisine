@@ -27,21 +27,37 @@ class Page extends State<MinePage> {
 
   Widget layout(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.white,
-          backgroundColor: Color.fromARGB(255, 104, 47, 157),
-          title: Text(
-            'Me',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+        // appBar: AppBar(
+        //   shadowColor: Colors.white,
+        //   backgroundColor: Color.fromARGB(255, 104, 47, 157),
+        //   title: Text(
+        //     'Me',
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        // ),
         body: ListView(children: <Widget>[
-          Container(
-              margin: EdgeInsets.all(20),
+      Container(
+          alignment: Alignment.center,
+          color: Color.fromARGB(255, 104, 47, 157),
+          height: 80,
+          child: Text(
+            'Me',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+          )),
+      Container(
+          color: Color.fromARGB(255, 104, 47, 157),
+          child: Container(
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.only(
+                    topLeft: const Radius.circular(10.0),
+                    topRight: const Radius.circular(10.0),
+                  )),
+              margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(
                 vertical: 10,
               ),
-              color: Colors.white,
               child: Row(
                 children: [
                   Container(
@@ -57,19 +73,15 @@ class Page extends State<MinePage> {
                     children: [
                       Text(
                         "Mr zhang",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 104, 47, 157),
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.grey),
                       ),
                       Text(
                         "hi every one",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 104, 47, 157)),
+                        style: TextStyle(color: Colors.grey),
                       ),
                       Text(
                         "0 Following   0 Follower",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 104, 47, 157)),
+                        style: TextStyle(color: Colors.grey),
                       ),
                     ],
                   ),
@@ -106,15 +118,15 @@ class Page extends State<MinePage> {
                         )),
                   ),
                 ],
-              )),
-          dinnerCenter(),
-          row("Be a teacher", BeATeacherPage()),
-          row("Feedback", FeedbackPage()),
-          row("Help", HelpPage()),
-          row("Setting", SettingPage()),
-          row("Admin Web", AdminWebPage()),
-          row("Logout", LoginPage(), logout: true),
-        ]));
+              ))),
+      dinnerCenter(),
+      row("Be a teacher", BeATeacherPage()),
+      row("Feedback", FeedbackPage()),
+      row("Help", HelpPage()),
+      row("Setting", SettingPage()),
+      row("Admin Web", AdminWebPage()),
+      row("Logout", LoginPage(), logout: true),
+    ]));
   }
 
   Widget row(title, page, {logout = false}) {
@@ -133,14 +145,12 @@ class Page extends State<MinePage> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
               children: [
-                Text(title,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 104, 47, 157),
-                        fontWeight: FontWeight.bold)),
+                Text(title, style: TextStyle(color: Colors.grey)),
                 Expanded(child: Container()),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 13,
+                  color: Colors.grey,
                 ),
               ],
             )));
@@ -157,21 +167,22 @@ class Page extends State<MinePage> {
             child: Container(
                 color: Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Row(
                   children: [
                     Text("Diners center",
                         style: TextStyle(
-                            color: Color.fromARGB(255, 104, 47, 157),
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
+                          color: Colors.grey,
+                          fontSize: 18,
+                        )),
                     Expanded(child: Container()),
                     Text(
                       "All",
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(fontSize: 13, color: Colors.grey),
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
+                      color: Colors.grey,
                       size: 13,
                     ),
                   ],
@@ -179,7 +190,7 @@ class Page extends State<MinePage> {
         Container(
             color: Colors.white,
             margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Row(
               children: [
                 InkWell(
@@ -196,8 +207,12 @@ class Page extends State<MinePage> {
                             Icon(
                               Icons.add_circle_outline,
                               size: 30,
+                              color: Colors.grey,
                             ),
-                            Text("Create course"),
+                            Text("Create course",
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                )),
                           ],
                         ))),
                 InkWell(
@@ -214,8 +229,14 @@ class Page extends State<MinePage> {
                             Icon(
                               Icons.ondemand_video,
                               size: 30,
+                              color: Colors.grey,
                             ),
-                            Text("My course"),
+                            Text(
+                              "My course",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                           ],
                         ))),
               ],
