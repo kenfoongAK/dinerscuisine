@@ -49,10 +49,10 @@ class Page extends State<MinePage> {
           color: Color.fromARGB(255, 104, 47, 157),
           child: Container(
               decoration: new BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.yellow,
                   borderRadius: new BorderRadius.only(
-                    topLeft: const Radius.circular(10.0),
-                    topRight: const Radius.circular(10.0),
+                    topLeft: const Radius.circular(10.5),
+                    topRight: const Radius.circular(10.5),
                   )),
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(
@@ -72,11 +72,11 @@ class Page extends State<MinePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Mr zhang",
+                        "Mr Zhang",
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                        "hi every one",
+                        "hi everyone",
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
@@ -90,8 +90,8 @@ class Page extends State<MinePage> {
                     child: RaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(18),
-                              bottomLeft: Radius.circular(18),
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
                               topRight: Radius.zero,
                               bottomRight: Radius.zero),
                         ),
@@ -112,7 +112,7 @@ class Page extends State<MinePage> {
                                 )),
                             Icon(
                               Icons.arrow_forward_ios,
-                              size: 10,
+                              size: 12,
                             )
                           ],
                         )),
@@ -140,7 +140,7 @@ class Page extends State<MinePage> {
               context, MaterialPageRoute(builder: (context) => page));
         },
         child: Container(
-            color: Colors.white,
+            color: Colors.yellow,
             margin: EdgeInsets.symmetric(horizontal: 20),
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
