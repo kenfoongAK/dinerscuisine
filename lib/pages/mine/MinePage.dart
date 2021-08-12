@@ -166,7 +166,7 @@ class Page extends State<MinePage> {
                   MaterialPageRoute(builder: (context) => DinnerCenterPage()));
             },
             child: Container(
-                color: Colors.cream,
+                color: Colors.white,
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Row(

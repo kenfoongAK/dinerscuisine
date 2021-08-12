@@ -28,13 +28,13 @@ class _FeedbackState extends State<Feedback> {
 
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
-  String name;
-  String message;
+  late String name;
+  late String message;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Feedback"),
       ),
@@ -78,19 +78,19 @@ class _FeedbackState extends State<Feedback> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                 ),
               ),
@@ -120,19 +120,19 @@ class _FeedbackState extends State<Feedback> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey[400]),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                 ),
               ),
@@ -203,8 +203,7 @@ class _FeedbackState extends State<Feedback> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 GestureDetector(
-                  onTap: () => launchUrl(
-                      "https://github.com/mashneh"),
+                  onTap: () => launchUrl("https://github.com/mashneh"),
                   child: Icon(
                     FontAwesomeIcons.github,
                     color: Colors.orange,
@@ -235,6 +234,4 @@ class _FeedbackState extends State<Feedback> {
       ),
     );
   }
-
-
 }
