@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:demo2/pages/mine/SuccessPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class FeedbackPage extends StatefulWidget {
   @override
@@ -71,7 +76,7 @@ class _FeedbackState extends State<FeedbackPage> {
                   filled: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  hintText: 'Your name',
+                  hintText: 'Email',
                   hintStyle: TextStyle(
                       color: Colors.blueGrey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
@@ -111,7 +116,7 @@ class _FeedbackState extends State<FeedbackPage> {
                   filled: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 35, horizontal: 20),
-                  hintText: 'Your message',
+                  hintText: 'Description',
                   hintStyle: TextStyle(
                     color: Colors.blueGrey,
                     fontFamily: 'RobotoSlab',
@@ -155,28 +160,32 @@ class _FeedbackState extends State<FeedbackPage> {
                         "mailto:mashneh9@gmail.com?subject=From $name&body=$message");
                   });
                 },
-                child: ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                          child: Icon(
-                        Icons.send,
-                        color: Colors.white,
-                      )),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.03,
+                child: InkWell(
+                    onTap: () {
+                      submit();
+                    },
+                    child: ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                              child: Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          )),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
+                          Center(
+                              child: Text(
+                            "Send",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'RobotoSlab'),
+                          )),
+                        ],
                       ),
-                      Center(
-                          child: Text(
-                        "Send",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white, fontFamily: 'RobotoSlab'),
-                      )),
-                    ],
-                  ),
-                ),
+                    )),
               ),
             ),
             SizedBox(
@@ -233,5 +242,36 @@ class _FeedbackState extends State<FeedbackPage> {
         ),
       ),
     );
+  }
+
+  Future<void> submit() async {
+    EasyLoading.show(status: 'loading...');
+
+    var headers = {
+      'Authorization': 'Basic bTRoU0gya0lqVFhOV0hmNUVXOng=',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request(
+        'POST', Uri.parse('https://vanguardii.freshdesk.com/api/v2/tickets'));
+    request.body = json.encode({
+      "email": t1.text,
+      "subject": "Feedback",
+      "description": t2.text,
+      "status": 2,
+      "priority": 1
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      EasyLoading.dismiss();
+      Navigator.pop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SuccessPage()));
+      // print(await response.stream.bytesToString());
+    } else {
+      EasyLoading.dismiss();
+    }
   }
 }
