@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/mine/AdminWebPage.dart';
 import 'package:demo2/pages/mine/BeATeacherPage.dart';
@@ -10,6 +12,7 @@ import 'package:demo2/pages/mine/ProfilePage.dart';
 import 'package:demo2/pages/mine/SettingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class MinePage extends StatefulWidget {
   @override
@@ -24,6 +27,38 @@ class Page extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return layout(context);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getMe();
+  }
+
+  String fullname = "Loading......";
+  String introduction = "hi everyone";
+  int comid = 1;
+
+  Future<void> getMe() async {
+    var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+    var request = http.Request(
+        'POST', Uri.parse('https://app.shanghai168.com/api/user/'));
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    request.bodyFields = {'id': prefs.getInt("id").toString()};
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      final result = await json.decode(await response.stream.bytesToString());
+      setState(() {
+        fullname = result['data'][0]['username'];
+        comid = result['data'][1]['id'];
+      });
+    } else {
+      print(response.reasonPhrase);
+    }
   }
 
   Widget layout(BuildContext context) {
@@ -62,6 +97,7 @@ class Page extends State<MinePage> {
               child: Row(
                 children: [
                   Container(
+                    color: Colors.white,
                     margin: EdgeInsets.all(10),
                     child: Icon(
                       Icons.account_circle_outlined,
@@ -73,11 +109,11 @@ class Page extends State<MinePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Mr Zhang",
+                        fullname,
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                        "hi everyone",
+                        introduction,
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
@@ -109,10 +145,12 @@ class Page extends State<MinePage> {
                           children: [
                             Text("Profile  ",
                                 style: TextStyle(
+                                  color: Colors.white,
                                   fontSize: 15,
                                 )),
                             Icon(
                               Icons.arrow_forward_ios,
+                              color: Colors.white,
                               size: 12,
                             )
                           ],
@@ -120,12 +158,11 @@ class Page extends State<MinePage> {
                   ),
                 ],
               ))),
-      dinnerCenter(),
-      row("Be a teacher", BeATeacherPage()),
+      comid == 1 ? row("Be a teacher", BeATeacherPage()) : dinnerCenter(),
       row("Feedback", FeedbackPage()),
       row("Help", HelpPage()),
       row("Setting", SettingPage()),
-      row("Admin Web", AdminWebPage()),
+      // row("Admin Web", AdminWebPage()),
       row("Logout", LoginPage(), logout: true),
     ]));
   }

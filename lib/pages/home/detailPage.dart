@@ -14,9 +14,13 @@ class Page extends State<DetailPage> {
   @override
   void initState() {
     super.initState();
+    // flickManager = FlickManager(
+    //   videoPlayerController: VideoPlayerController.network(
+    //       "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4"),
+    // );
     flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.network(
-          "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4"),
+      videoPlayerController:
+          VideoPlayerController.asset("assets/images/tutorial.mp4"),
     );
   }
 

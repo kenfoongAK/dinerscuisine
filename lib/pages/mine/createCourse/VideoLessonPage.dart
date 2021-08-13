@@ -33,46 +33,46 @@ class Page extends State<VideoLessonPage> {
             Row(
               children: [
                 Expanded(child: Container()),
-                title("Add picture"),
+                title("Add picture", "assets/images/add_picture.png"),
                 Expanded(child: Container()),
-                title("Add promo"),
+                title("Add promo", "assets/images/add_promo.png"),
                 Expanded(child: Container()),
               ],
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: new TextField(
-                decoration: new InputDecoration(
-                  labelText: "Name your course",
-                ),
-                cursorColor: Color.fromARGB(255, 104, 47, 157),
-                style: TextStyle(
-                  color: Color.fromARGB(255, 104, 47, 157),
-                ),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], // Only numbers can be entered
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: new TextField(
-                maxLength: 5,
-                decoration: new InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Introduce your food",
-                ),
-                cursorColor: Color.fromARGB(255, 104, 47, 157),
-                style: TextStyle(
-                  color: Color.fromARGB(255, 104, 47, 157),
-                ),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ], // Only numbers can be entered
-              ),
-            ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            //   child: new TextField(
+            //     decoration: new InputDecoration(
+            //       labelText: "Name your course",
+            //     ),
+            //     cursorColor: Color.fromARGB(255, 104, 47, 157),
+            //     style: TextStyle(
+            //       color: Color.fromARGB(255, 104, 47, 157),
+            //     ),
+            //     keyboardType: TextInputType.number,
+            //     inputFormatters: <TextInputFormatter>[
+            //       FilteringTextInputFormatter.digitsOnly
+            //     ], // Only numbers can be entered
+            //   ),
+            // ),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            //   child: new TextField(
+            //     maxLength: 5,
+            //     decoration: new InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       labelText: "Introduce your food",
+            //     ),
+            //     cursorColor: Color.fromARGB(255, 104, 47, 157),
+            //     style: TextStyle(
+            //       color: Color.fromARGB(255, 104, 47, 157),
+            //     ),
+            //     keyboardType: TextInputType.number,
+            //     inputFormatters: <TextInputFormatter>[
+            //       FilteringTextInputFormatter.digitsOnly
+            //     ], // Only numbers can be entered
+            //   ),
+            // ),
             row('Course classification'),
             row('Suitable for the crowd'),
             row('Degree of difficulty'),
@@ -119,7 +119,7 @@ class Page extends State<VideoLessonPage> {
         ));
   }
 
-  Widget title(title) {
+  Widget title(title, image) {
     var size = MediaQuery.of(context).size;
     double witdh = (size.width / 2) - 20;
     double height = witdh * (600 / 500);
@@ -132,7 +132,7 @@ class Page extends State<VideoLessonPage> {
             border: Border.all(color: Colors.grey, width: 1),
             borderRadius: new BorderRadius.all(Radius.circular(20.0)),
             image: DecorationImage(
-              image: AssetImage("assets/images/add_picture.png"),
+              image: AssetImage(image),
               fit: BoxFit.cover,
             )),
         child: Container(
@@ -172,9 +172,9 @@ class Page extends State<VideoLessonPage> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
               children: [
-                Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(title),
                 Expanded(child: Container()),
-                Text("fill in", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("fill in"),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 13,

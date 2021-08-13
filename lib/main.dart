@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:demo2/pages/FirstPage.dart';
 import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/home/HomePage.dart';
+import 'package:demo2/pages/mine/MinePage.dart';
 import 'package:demo2/pages/mine/SuccessPage.dart';
 import 'package:demo2/pages/mine/createCourse/VideoLessonPage.dart';
 import 'package:demo2/pages/other/tutorPage.dart';

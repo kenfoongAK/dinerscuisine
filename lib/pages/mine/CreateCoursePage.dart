@@ -18,6 +18,9 @@ class Page extends State<CreateCoursePage> {
   }
 
   Widget layout(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    double witdh = (size.width / 2) - 20;
+    double height = witdh * (600 / 500);
     /*24 is for notification bar on Android*/
     return new Scaffold(
         appBar: AppBar(
@@ -41,46 +44,104 @@ class Page extends State<CreateCoursePage> {
             Row(
               children: [
                 Expanded(child: Container()),
-                Container(
-                  margin: EdgeInsets.all(10),
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    onPressed: () {
+                // Container(
+                //   margin: EdgeInsets.all(10),
+                //   height: 50.0,
+                //   child: RaisedButton(
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(18.0),
+                //     ),
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => VideoLessonPage()));
+                //     },
+                //     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                //     color: Color.fromARGB(255, 104, 47, 157),
+                //     textColor: Colors.white,
+                //     child: Text("Video lesson", style: TextStyle(fontSize: 15)),
+                //   ),
+                // ),
+                InkWell(
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => VideoLessonPage()));
                     },
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    color: Color.fromARGB(255, 104, 47, 157),
-                    textColor: Colors.white,
-                    child: Text("Video lesson", style: TextStyle(fontSize: 15)),
-                  ),
-                ),
+                    child: Container(
+                        height: height,
+                        width: witdh,
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 1),
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(20.0)),
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/video_class.png"),
+                              fit: BoxFit.cover,
+                            )),
+                        child: Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 20),
+                            alignment: Alignment.bottomCenter,
+                            child: Text(
+                              "Video lesson",
+                              style: TextStyle(fontSize: 15),
+                            )))),
                 Expanded(child: Container()),
-                Container(
-                  margin: EdgeInsets.all(10),
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                    onPressed: () {
+                // Container(
+                //   margin: EdgeInsets.all(10),
+                //   height: 50.0,
+                //   child: RaisedButton(
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(18.0),
+                //     ),
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => LiveLessonWaitPage()));
+                //     },
+                //     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                //     color: Color.fromARGB(255, 104, 47, 157),
+                //     textColor: Colors.white,
+                //     child: Text("Live Lesson Wait",
+                //         style: TextStyle(fontSize: 15)),
+                //   ),
+                // ),
+                InkWell(
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => LiveLessonWaitPage()));
                     },
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    color: Color.fromARGB(255, 104, 47, 157),
-                    textColor: Colors.white,
-                    child: Text("Live Lesson Wait",
-                        style: TextStyle(fontSize: 15)),
-                  ),
-                ),
+                    child: Container(
+                        child: Container(
+                            height: height,
+                            width: witdh,
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                borderRadius:
+                                    new BorderRadius.all(Radius.circular(20.0)),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/images/live_class.png"),
+                                  fit: BoxFit.cover,
+                                )),
+                            child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 20),
+                                alignment: Alignment.bottomCenter,
+                                child: Text(
+                                  "Live Lesson Wait",
+                                  style: TextStyle(fontSize: 15),
+                                ))))),
                 Expanded(child: Container()),
               ],
             ),
