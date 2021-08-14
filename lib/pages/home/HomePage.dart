@@ -27,60 +27,60 @@ class Page extends State<HomePage> {
   Widget layout(BuildContext context) {
     /*24 is for notification bar on Android*/
     return new Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.white,
-          backgroundColor: Color.fromARGB(255, 104, 47, 157),
-          title: Row(
-            children: [
-              new GestureDetector(
-                onTap: () {
-                  setState(() {
-                    tab = "follow";
-                  });
-                },
-                child: Text(
-                  'Follow',
-                  style: TextStyle(
-                      color: Colors.white,
-                      decoration: tab == "follow"
-                          ? TextDecoration.underline
-                          : TextDecoration.none),
-                ),
-              ),
-              SizedBox(width: 10),
-              new GestureDetector(
-                onTap: () {
-                  setState(() {
-                    tab = "recommad";
-                  });
-                },
-                child: Text(
-                  'Recommend',
-                  style: TextStyle(
-                      color: Colors.white,
-                      decoration: tab == "recommad"
-                          ? TextDecoration.underline
-                          : TextDecoration.none),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            new IconButton(
-              icon: new Icon(Icons.search),
-              color: Colors.grey[200],
-              highlightColor: Colors.grey[200],
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FindPage()));
-              },
-            ),
-          ],
-        ),
-        body: tab == "recommad" ? recommand() : follow());
+        // appBar: AppBar(
+        //   shadowColor: Colors.white,
+        //   backgroundColor: Color.fromARGB(255, 104, 47, 157),
+        //   title: Row(
+        //     children: [
+        //       new GestureDetector(
+        //         onTap: () {
+        //           setState(() {
+        //             tab = "follow";
+        //           });
+        //         },
+        //         child: Text(
+        //           'Follow',
+        //           style: TextStyle(
+        //               color: Colors.white,
+        //               decoration: tab == "follow"
+        //                   ? TextDecoration.underline
+        //                   : TextDecoration.none),
+        //         ),
+        //       ),
+        //       SizedBox(width: 10),
+        //       new GestureDetector(
+        //         onTap: () {
+        //           setState(() {
+        //             tab = "recommad";
+        //           });
+        //         },
+        //         child: Text(
+        //           'Recommend',
+        //           style: TextStyle(
+        //               color: Colors.white,
+        //               decoration: tab == "recommad"
+        //                   ? TextDecoration.underline
+        //                   : TextDecoration.none),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        //   actions: [
+        //     new IconButton(
+        //       icon: new Icon(Icons.search),
+        //       color: Colors.grey[200],
+        //       highlightColor: Colors.grey[200],
+        //       onPressed: () {
+        //         Navigator.push(context,
+        //             MaterialPageRoute(builder: (context) => FindPage()));
+        //       },
+        //     ),
+        //   ],
+        // ),
+        body: recommand());
   }
 
-  Widget header(BuildContext context) {
+  Widget header(BuildContext context, String img) {
     var size = MediaQuery.of(context).size;
 
     //调试线显示
@@ -98,7 +98,7 @@ class Page extends State<HomePage> {
                 borderRadius: BorderRadius.circular(15.0),
                 child: Image.asset(
                     //加载的图片
-                    'assets/images/daily.jpg',
+                    img,
                     width: (size.width / 2) - 20,
                     fit: BoxFit.cover
                     //对齐方式
@@ -109,11 +109,17 @@ class Page extends State<HomePage> {
     //调试线显示
     // debugPaintSizeEnabled = true;
     return Container(
-        color: Colors.grey,
+        padding: EdgeInsets.only(top: 10, right: 40),
+        decoration: BoxDecoration(
+            borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+            image: DecorationImage(
+              image: AssetImage("assets/images/example/3.png"),
+              fit: BoxFit.cover,
+            )),
+        height: 120,
         margin: EdgeInsets.all(10),
-        alignment: Alignment.center,
-        height: 100,
-        child: Text("ads"));
+        alignment: Alignment.topRight,
+        child: Text("广告投放"));
   }
 
   Widget header2(BuildContext context, String img) {
@@ -180,34 +186,41 @@ class Page extends State<HomePage> {
 
     return ListView(children: <Widget>[
       Container(
+          margin: EdgeInsets.all(10),
+          child: TextFormField(
+            autofocus: false,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              hintText: '',
+              contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+              suffixIcon: GestureDetector(
+                child: Icon(
+                  Icons.search,
+                ),
+              ),
+            ),
+          )),
+      Container(
           height: (size.width / 2),
           child: ListView(
             // This next line does the trick.
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               SizedBox(width: 10),
-              header(context),
-              header(context),
-              header(context),
-              header(context),
-              header(context),
-              header(context),
-              header(context),
-              header(context),
+              header(context, 'assets/images/example/1.png'),
+              header(context, 'assets/images/example/2.png'),
+              header(context, 'assets/images/example/1.png'),
+              header(context, 'assets/images/example/2.png'),
+              header(context, 'assets/images/example/1.png'),
+              header(context, 'assets/images/example/2.png'),
               SizedBox(width: 10),
             ],
           )),
-      Container(
-          margin: EdgeInsets.only(
-            left: 10,
-          ),
-          child: Text(
-            "Popular",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          )),
       GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: (3 / 1),
+        crossAxisCount: 4,
+        childAspectRatio: (3 / 2),
         physics:
             NeverScrollableScrollPhysics(), // to disable GridView's scrolling
         shrinkWrap: true, // You won't see infinite size error
@@ -226,7 +239,7 @@ class Page extends State<HomePage> {
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("All Courses", style: TextStyle(fontSize: 15)),
+              child: Text("popular", style: TextStyle(fontSize: 15)),
             ),
           ),
           Container(
@@ -243,7 +256,7 @@ class Page extends State<HomePage> {
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("Live", style: TextStyle(fontSize: 15)),
+              child: Text("Live Class", style: TextStyle(fontSize: 15)),
             ),
           ),
           Container(
@@ -277,12 +290,20 @@ class Page extends State<HomePage> {
               padding: EdgeInsets.all(10.0),
               color: Color.fromARGB(255, 104, 47, 157),
               textColor: Colors.white,
-              child: Text("Sort", style: TextStyle(fontSize: 15)),
+              child: Text("classify", style: TextStyle(fontSize: 15)),
             ),
           ),
         ],
       ),
       ads(context),
+      Container(
+          margin: EdgeInsets.only(
+            left: 10,
+          ),
+          child: Text(
+            "Popular",
+            style: TextStyle(fontSize: 15),
+          )),
     ]);
   }
 }
