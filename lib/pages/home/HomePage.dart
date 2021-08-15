@@ -80,6 +80,23 @@ class Page extends State<HomePage> {
         body: recommand());
   }
 
+  Widget ads(BuildContext context) {
+    //调试线显示
+    // debugPaintSizeEnabled = true;
+    return Container(
+        padding: EdgeInsets.only(top: 10, right: 40),
+        decoration: BoxDecoration(
+            borderRadius: new BorderRadius.all(Radius.circular(20.0)),
+            image: DecorationImage(
+              image: AssetImage("assets/images/example/3.png"),
+              fit: BoxFit.cover,
+            )),
+        height: 120,
+        margin: EdgeInsets.all(10),
+        alignment: Alignment.topRight,
+        child: Text("广告投放"));
+  }
+
   Widget header(BuildContext context, String img) {
     var size = MediaQuery.of(context).size;
 
@@ -103,23 +120,6 @@ class Page extends State<HomePage> {
                     fit: BoxFit.cover
                     //对齐方式
                     ))));
-  }
-
-  Widget ads(BuildContext context) {
-    //调试线显示
-    // debugPaintSizeEnabled = true;
-    return Container(
-        padding: EdgeInsets.only(top: 10, right: 40),
-        decoration: BoxDecoration(
-            borderRadius: new BorderRadius.all(Radius.circular(20.0)),
-            image: DecorationImage(
-              image: AssetImage("assets/images/example/3.png"),
-              fit: BoxFit.cover,
-            )),
-        height: 120,
-        margin: EdgeInsets.all(10),
-        alignment: Alignment.topRight,
-        child: Text("广告投放"));
   }
 
   Widget header2(BuildContext context, String img) {
@@ -147,6 +147,41 @@ class Page extends State<HomePage> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "教学",
+                  textAlign: TextAlign.left,
+                ),
+              )
+            ])));
+  }
+
+  Widget header3(BuildContext context, String img) {
+    var size = MediaQuery.of(context).size;
+
+    //调试线显示
+    // debugPaintSizeEnabled = true;
+    return GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DetailPage()));
+        },
+        child: Container(
+            margin: EdgeInsets.all(10),
+            height: (size.width / 3) + 20,
+            width: (size.width / 3) - 20,
+            child: Column(children: [
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.asset(
+                      //加载的图片
+                      img,
+                      width: (size.width / 3) - 20,
+                      fit: BoxFit.cover
+                      //对齐方式
+                      )),
+              Container(
+                margin: EdgeInsets.only(top: 5, right: 10, left: 10),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "西餐料理",
                   textAlign: TextAlign.left,
                 ),
               )
@@ -296,13 +331,35 @@ class Page extends State<HomePage> {
         ],
       ),
       ads(context),
+      Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+              margin: EdgeInsets.only(
+                left: 10,
+              ),
+              padding: EdgeInsets.all(8),
+              decoration: new BoxDecoration(
+                  color: Color.fromARGB(255, 104, 47, 157),
+                  borderRadius: new BorderRadius.all(Radius.circular(40.0))),
+              child: Text(
+                "Popular",
+                style: TextStyle(fontSize: 15, color: Colors.white),
+              ))),
       Container(
-          margin: EdgeInsets.only(
-            left: 10,
-          ),
-          child: Text(
-            "Popular",
-            style: TextStyle(fontSize: 15),
+          height: (size.width / 3) + 10,
+          child: ListView(
+            // This next line does the trick.
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              SizedBox(width: 10),
+              header3(context, 'assets/images/example/4.png'),
+              header3(context, 'assets/images/example/5.png'),
+              header3(context, 'assets/images/example/6.png'),
+              header3(context, 'assets/images/example/4.png'),
+              header3(context, 'assets/images/example/5.png'),
+              header3(context, 'assets/images/example/6.png'),
+              SizedBox(width: 10),
+            ],
           )),
     ]);
   }

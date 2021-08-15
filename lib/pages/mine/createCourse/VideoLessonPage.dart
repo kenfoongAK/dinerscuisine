@@ -39,40 +39,6 @@ class Page extends State<VideoLessonPage> {
                 Expanded(child: Container()),
               ],
             ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            //   child: new TextField(
-            //     decoration: new InputDecoration(
-            //       labelText: "Name your course",
-            //     ),
-            //     cursorColor: Color.fromARGB(255, 104, 47, 157),
-            //     style: TextStyle(
-            //       color: Color.fromARGB(255, 104, 47, 157),
-            //     ),
-            //     keyboardType: TextInputType.number,
-            //     inputFormatters: <TextInputFormatter>[
-            //       FilteringTextInputFormatter.digitsOnly
-            //     ], // Only numbers can be entered
-            //   ),
-            // ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            //   child: new TextField(
-            //     maxLength: 5,
-            //     decoration: new InputDecoration(
-            //       border: OutlineInputBorder(),
-            //       labelText: "Introduce your food",
-            //     ),
-            //     cursorColor: Color.fromARGB(255, 104, 47, 157),
-            //     style: TextStyle(
-            //       color: Color.fromARGB(255, 104, 47, 157),
-            //     ),
-            //     keyboardType: TextInputType.number,
-            //     inputFormatters: <TextInputFormatter>[
-            //       FilteringTextInputFormatter.digitsOnly
-            //     ], // Only numbers can be entered
-            //   ),
-            // ),
             row('Course classification'),
             row('Suitable for the crowd'),
             row('Degree of difficulty'),
@@ -167,9 +133,24 @@ class Page extends State<VideoLessonPage> {
     return InkWell(
         onTap: () {},
         child: Container(
-            color: Colors.white,
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            // color: Colors.white,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30), //border corner radius
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2), //color of shadow
+                  spreadRadius: 1, //spread radius
+                  blurRadius: 1, // blur radius
+                  offset: Offset(0, 2), // changes position of shadow
+                  //first paramerter of offset is left-right
+                  //second parameter is top to down
+                ),
+                //you can set more BoxShadow() here
+              ],
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
               children: [
                 Text(title),

@@ -75,7 +75,6 @@ class Page extends State<CreateCoursePage> {
                         width: witdh,
                         margin: EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
                             borderRadius:
                                 new BorderRadius.all(Radius.circular(20.0)),
                             image: DecorationImage(

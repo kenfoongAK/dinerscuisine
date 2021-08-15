@@ -122,32 +122,32 @@ class Page extends State<TutorPage> {
                       child: Text(
                     "like",
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 104, 47, 157),
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  )),
-                  Expanded(
-                      child: Text(
-                    "dynamic",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 104, 47, 157),
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                      fontSize: 20,
+                      color: Colors.grey[700],
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                    textAlign: TextAlign.left,
                   )),
                 ],
               )),
+          Container(
+              margin: EdgeInsets.all(10),
+              child: TextFormField(
+                autofocus: false,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: 'KEYWORD SEARCH>',
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0)),
+                ),
+              )),
           Row(
             children: [
-              header(context, 'assets/images/1.jpg'),
-              header(context, 'assets/images/2.jpg'),
-            ],
-          ),
-          Row(
-            children: [
-              header(context, 'assets/images/1.jpg'),
-              header(context, 'assets/images/2.jpg'),
+              header(context, 'assets/images/example/7.png'),
+              header(context, 'assets/images/example/8.png'),
             ],
           ),
           Row(
@@ -167,23 +167,27 @@ class Page extends State<TutorPage> {
     //调试线显示
     // debugPaintSizeEnabled = true;
     return Container(
+        alignment: Alignment.centerLeft,
         margin: EdgeInsets.all(10),
-        child: Column(children: [
-          Image.asset(
-            //加载的图片
-            img,
-            width: (size.width / 2) - 20,
-            height: (size.width / 2) - 20,
-            fit: BoxFit.fill,
-            //对齐方式
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "食物上市",
-              textAlign: TextAlign.left,
-            ),
-          )
-        ]));
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Image.asset(
+                //加载的图片
+                img,
+                width: (size.width / 2) - 20,
+                height: (size.width / 2) - 20,
+                fit: BoxFit.fill,
+                //对齐方式
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "食物上市",
+                  textAlign: TextAlign.left,
+                ),
+              )
+            ]));
   }
 }
