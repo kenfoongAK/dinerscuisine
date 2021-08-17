@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:demo2/pages/LoginPage.dart';
 import 'package:demo2/pages/mine/AdminWebPage.dart';
 import 'package:demo2/pages/mine/BeATeacherPage.dart';
@@ -12,7 +10,6 @@ import 'package:demo2/pages/mine/ProfilePage.dart';
 import 'package:demo2/pages/mine/SettingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class MinePage extends StatefulWidget {
   @override
@@ -29,43 +26,11 @@ class Page extends State<MinePage> {
     return layout(context);
   }
 
-  @override
-  void initState() {
-    super.initState();
-    getMe();
-  }
-
-  String fullname = "Loading......";
-  String introduction = "hi everyone";
-  int comid = 1;
-
-  Future<void> getMe() async {
-    var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-    var request = http.Request(
-        'POST', Uri.parse('https://app.shanghai168.com/api/user/'));
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    request.bodyFields = {'id': prefs.getInt("id").toString()};
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      final result = await json.decode(await response.stream.bytesToString());
-      setState(() {
-        fullname = result['data'][0]['username'];
-        comid = result['data'][1]['id'];
-      });
-    } else {
-      print(response.reasonPhrase);
-    }
-  }
-
   Widget layout(BuildContext context) {
     return new Scaffold(
         // appBar: AppBar(
         //   shadowColor: Colors.white,
-        //   backgroundColor: Color.fromARGB(255, 104, 47, 157),
+        //   backgroundColor: Colors.white,
         //   title: Text(
         //     'Me',
         //     style: TextStyle(color: Colors.white),
@@ -74,15 +39,15 @@ class Page extends State<MinePage> {
         body: ListView(children: <Widget>[
       Container(
           alignment: Alignment.center,
-          color: Color.fromARGB(255, 104, 47, 157),
+          color: Colors.black,
           height: 80,
           child: Text(
             'Me',
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
           )),
       Container(
-          color: Color.fromARGB(255, 104, 47, 157),
+          color: Colors.white,
           child: Container(
               decoration: new BoxDecoration(
                   color: Colors.white,
@@ -97,28 +62,27 @@ class Page extends State<MinePage> {
               child: Row(
                 children: [
                   Container(
-                    color: Colors.white,
                     margin: EdgeInsets.all(10),
                     child: Icon(
                       Icons.account_circle_outlined,
                       size: 50,
-                      color: Color.fromARGB(255, 104, 47, 157),
+                      color: Colors.black,
                     ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        fullname,
-                        style: TextStyle(color: Colors.grey),
+                        "Mr Mash",
+                        style: TextStyle(color: Colors.black),
                       ),
                       Text(
-                        introduction,
-                        style: TextStyle(color: Colors.grey),
+                        "hello pioneers",
+                        style: TextStyle(color: Colors.black),
                       ),
                       Text(
                         "0 Following   0 Follower",
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ],
                   ),
@@ -139,18 +103,17 @@ class Page extends State<MinePage> {
                                   builder: (context) => ProfilePage()));
                         },
                         padding: EdgeInsets.all(15.0),
-                        color: Colors.red[400],
-                        textColor: Colors.grey,
+                        color: Colors.orangeAccent
+                        textColor: Colors.white,
                         child: Row(
                           children: [
                             Text("Profile  ",
                                 style: TextStyle(
-                                  color: Colors.white,
                                   fontSize: 15,
                                 )),
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: Colors.white,
+                              color: Colors.white
                               size: 12,
                             )
                           ],
@@ -158,11 +121,12 @@ class Page extends State<MinePage> {
                   ),
                 ],
               ))),
-      comid == 1 ? row("Be a teacher", BeATeacherPage()) : dinnerCenter(),
+      dinnerCenter(),
+      row("Be a teacher", BeATeacherPage()),
       row("Feedback", FeedbackPage()),
       row("Help", HelpPage()),
       row("Setting", SettingPage()),
-      // row("Admin Web", AdminWebPage()),
+      row("Admin Web", AdminWebPage()),
       row("Logout", LoginPage(), logout: true),
     ]));
   }
@@ -183,12 +147,12 @@ class Page extends State<MinePage> {
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Row(
               children: [
-                Text(title, style: TextStyle(color: Colors.grey)),
+                Text(title, style: TextStyle(color: Colors.black)),
                 Expanded(child: Container()),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 13,
-                  color: Colors.white,
+                  color: Colors.green,
                 ),
               ],
             )));
@@ -210,17 +174,17 @@ class Page extends State<MinePage> {
                   children: [
                     Text("Diners center",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Colors.black,
                           fontSize: 18,
                         )),
                     Expanded(child: Container()),
                     Text(
                       "All",
-                      style: TextStyle(fontSize: 13, color: Colors.grey),
+                      style: TextStyle(fontSize: 13, color: Colors.green,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.grey,
+                      color: Colors.green,
                       size: 13,
                     ),
                   ],
@@ -245,11 +209,11 @@ class Page extends State<MinePage> {
                             Icon(
                               Icons.add_circle_outline,
                               size: 30,
-                              color: Colors.grey,
+                              color: Colors.green,
                             ),
                             Text("Create course",
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.green,
                                 )),
                           ],
                         ))),
@@ -267,12 +231,12 @@ class Page extends State<MinePage> {
                             Icon(
                               Icons.ondemand_video,
                               size: 30,
-                              color: Colors.grey,
+                              color: Colors.green,
                             ),
                             Text(
                               "My course",
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: Colors.green,
                               ),
                             ),
                           ],

@@ -1,3 +1,5 @@
+// ignore: file_names
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,7 +20,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
 
   _launchURLMail() async {
     const url =
-        'mailto: mashneh9@gmail.com?subject=LifePlusApp&body=Your sugestions%20or BeATutor..';
+        'mailto:mashneh9@gmail.com?subject=LifePlusApp&body=Your sugestions%20or BeATutor..';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -31,12 +33,13 @@ class _BeATeacherState extends State<BeATeacherPage> {
   late String name;
   late String email;
   late String message;
+  late String descirption;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
+      appBar: AppBar( backgroundColor: Color.fromARGB(255, 104, 47, 157),
         title: Text("Be A Teacher"),
       ),
       body: Padding(
@@ -48,7 +51,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 13),
               child: Text(
-                "Become a teacher/tutor and earn and get paid for teaching. ",
+                "Become a teacher/tutor, earn and get paid for teaching. ",
                 style: TextStyle(
                   fontSize: 17.6,
                   height: 1.4,
@@ -74,24 +77,24 @@ class _BeATeacherState extends State<BeATeacherPage> {
                       EdgeInsets.symmetric(vertical: 16, horizontal: 22),
                   hintText: 'Your name',
                   hintStyle: TextStyle(
-                      color: Colors.blueGrey, fontFamily: 'RobotoSlab'),
+                      color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                 ),
               ),
@@ -103,7 +106,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding: const EdgeInsets.all(12),
               child: TextField(
                 onChanged: (val) {
-                  if (val != null || val.length > 0) message = val;
+                  if (val != null || val.length > 0){ message = val;}
                 },
                 textAlign: TextAlign.start,
                 controller: t2,
@@ -114,24 +117,24 @@ class _BeATeacherState extends State<BeATeacherPage> {
                       EdgeInsets.symmetric(vertical: 35, horizontal: 20),
                   hintText: 'Your email',
                   hintStyle: TextStyle(
-                      color: Colors.blueGrey, fontFamily: 'RobotoSlab'),
+                      color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                 ),
               ),
@@ -143,7 +146,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding: const EdgeInsets.all(12),
               child: TextField(
                 onChanged: (val) {
-                  if (val != null || val.length > 0) message = val;
+                  if (val != null || val.length > 0) {message = val;}
                 },
                 textAlign: TextAlign.start,
                 controller: t2,
@@ -161,19 +164,19 @@ class _BeATeacherState extends State<BeATeacherPage> {
                     borderRadius: BorderRadius.all(
                       Radius.circular(18),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(18),
                     ),
-                    borderSide: BorderSide(color: Colors.green),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                 ),
               ),
@@ -182,7 +185,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
               height: MediaQuery.of(context).size.height * 0.04,
             ),
             Card(
-              color: Colors.green[300],
+              color: Colors.deepPurple,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(13.0),
               ),
@@ -193,7 +196,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
                     t1.clear();
                     t2.clear();
                     launchUrl(
-                        "mailto:mashneh9@gmail.com?subject=From $name&body=$message");
+                        "mailto:mashneh@gmail.com?subject=From $name&body=$message");
                   });
                 },
                 child: ListTile(
@@ -206,7 +209,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
                         color: Colors.white,
                       )),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.01,
+                        width: MediaQuery.of(context).size.width * 0.05,
                       ),
                       Center(
                           child: Text(
@@ -225,10 +228,10 @@ class _BeATeacherState extends State<BeATeacherPage> {
             ),
             Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.05,
-                    left: 11,
-                    right: 11,
-                    bottom: MediaQuery.of(context).size.height * 0.034),
+                    top: MediaQuery.of(context).size.height * 0.06,
+                    left: 6,
+                    right: 6,
+                    bottom: MediaQuery.of(context).size.height * 0.03),
                 child: Text("")),
           ],
         ),

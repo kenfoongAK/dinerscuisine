@@ -1,11 +1,10 @@
-import 'dart:convert';
-
-import 'package:demo2/pages/mine/SuccessPage.dart';
+// ignore: file_names
+// ignore: file_names
+// ignore: file names
+// ignore: file names
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
 
 class FeedbackPage extends StatefulWidget {
   @override
@@ -40,7 +39,7 @@ class _FeedbackState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Color.fromARGB(255, 104, 47, 157),
         title: Text("Feedback"),
       ),
       body: Padding(
@@ -52,7 +51,7 @@ class _FeedbackState extends State<FeedbackPage> {
               padding:
                   const EdgeInsets.symmetric(vertical: 14.0, horizontal: 13),
               child: Text(
-                "Send us a message, and we'll get in touch with you as soon as possible. ",
+                "Hi.Send us a message, and we'll get in touch with you as soon as possible. ",
                 style: TextStyle(
                   fontSize: 17.5,
                   height: 1.3,
@@ -76,35 +75,35 @@ class _FeedbackState extends State<FeedbackPage> {
                   filled: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  hintText: 'Email',
+                  hintText: 'Your name',
                   hintStyle: TextStyle(
-                      color: Colors.blueGrey, fontFamily: 'RobotoSlab'),
+                      color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(12),
+                      Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(12),
+                      Radius.circular(13),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.0001,
+              height: MediaQuery.of(context).size.height * 0.0002,
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               child: TextField(
                 onChanged: (val) {
                   if (val != null || val.length > 0) message = val;
@@ -116,28 +115,28 @@ class _FeedbackState extends State<FeedbackPage> {
                   filled: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 35, horizontal: 20),
-                  hintText: 'Description',
+                  hintText: 'Your message',
                   hintStyle: TextStyle(
-                    color: Colors.blueGrey,
+                    color: Colors.grey,
                     fontFamily: 'RobotoSlab',
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(17),
                     ),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.orangeAccent),
                   ),
                 ),
               ),
@@ -146,7 +145,7 @@ class _FeedbackState extends State<FeedbackPage> {
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             Card(
-              color: Colors.green[300],
+              color: Colors.deepPurple,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
@@ -160,32 +159,28 @@ class _FeedbackState extends State<FeedbackPage> {
                         "mailto:mashneh9@gmail.com?subject=From $name&body=$message");
                   });
                 },
-                child: InkWell(
-                    onTap: () {
-                      submit();
-                    },
-                    child: ListTile(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Center(
-                              child: Icon(
-                            Icons.send,
-                            color: Colors.white,
-                          )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.03,
-                          ),
-                          Center(
-                              child: Text(
-                            "Send",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white, fontFamily: 'RobotoSlab'),
-                          )),
-                        ],
+                child: ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Center(
+                          child: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      )),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.05,
                       ),
-                    )),
+                      Center(
+                          child: Text(
+                        "Send",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white, fontFamily: 'RobotoSlab'),
+                      )),
+                    ],
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -202,7 +197,7 @@ class _FeedbackState extends State<FeedbackPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'RobotoSlab',
-                  color: Colors.blueGrey[600],
+                  color: Colors.grey,
                   fontSize: 17,
                   height: 1.3,
                 ),
@@ -215,7 +210,7 @@ class _FeedbackState extends State<FeedbackPage> {
                   onTap: () => launchUrl("https://github.com/mashneh"),
                   child: Icon(
                     FontAwesomeIcons.github,
-                    color: Colors.orange,
+                    color: Colors.greenAccent
                     size: 35,
                   ),
                 ),
@@ -226,7 +221,7 @@ class _FeedbackState extends State<FeedbackPage> {
                   onTap: () => launchUrl(
                       "https://play.google.com/store/apps/details?id=com.lifeplusapp&hl=en_IN"),
                   child: Icon(FontAwesomeIcons.googlePlay,
-                      color: Color(0xfffb3958), size: 35),
+                      color: Color(0xff1DA1F2), size: 35),
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.06,
@@ -234,7 +229,7 @@ class _FeedbackState extends State<FeedbackPage> {
                 GestureDetector(
                   onTap: () => _launchURLMail(),
                   child: Icon(FontAwesomeIcons.at,
-                      color: Color(0xff1DA1F2), size: 35),
+                      color: Color(0xff0f3949), size: 35),
                 ),
               ],
             ),
@@ -242,36 +237,5 @@ class _FeedbackState extends State<FeedbackPage> {
         ),
       ),
     );
-  }
-
-  Future<void> submit() async {
-    EasyLoading.show(status: 'loading...');
-
-    var headers = {
-      'Authorization': 'Basic bTRoU0gya0lqVFhOV0hmNUVXOng=',
-      'Content-Type': 'application/json'
-    };
-    var request = http.Request(
-        'POST', Uri.parse('https://vanguardii.freshdesk.com/api/v2/tickets'));
-    request.body = json.encode({
-      "email": t1.text,
-      "subject": "Feedback",
-      "description": t2.text,
-      "status": 2,
-      "priority": 1
-    });
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 201 || response.statusCode == 200) {
-      EasyLoading.dismiss();
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => SuccessPage()));
-      // print(await response.stream.bytesToString());
-    } else {
-      EasyLoading.dismiss();
-    }
   }
 }
