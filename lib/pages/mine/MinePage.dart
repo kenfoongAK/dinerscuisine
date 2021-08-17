@@ -103,7 +103,7 @@ class Page extends State<MinePage> {
                                   builder: (context) => ProfilePage()));
                         },
                         padding: EdgeInsets.all(15.0),
-                        color: Colors.orangeAccent
+                        color: Colors.orangeAccent,
                         textColor: Colors.white,
                         child: Row(
                           children: [
@@ -113,7 +113,7 @@ class Page extends State<MinePage> {
                                 )),
                             Icon(
                               Icons.arrow_forward_ios,
-                              color: Colors.white
+                              color: Colors.white,
                               size: 12,
                             )
                           ],
@@ -178,10 +178,11 @@ class Page extends State<MinePage> {
                           fontSize: 18,
                         )),
                     Expanded(child: Container()),
-                    Text(
-                      "All",
-                      style: TextStyle(fontSize: 13, color: Colors.green,
-                    ),
+                    Text("All",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.green,
+                        )),
                     Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.green,

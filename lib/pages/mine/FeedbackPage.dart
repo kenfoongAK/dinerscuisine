@@ -39,7 +39,8 @@ class _FeedbackState extends State<FeedbackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(backgroundColor: Color.fromARGB(255, 104, 47, 157),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 104, 47, 157),
         title: Text("Feedback"),
       ),
       body: Padding(
@@ -76,14 +77,13 @@ class _FeedbackState extends State<FeedbackPage> {
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                   hintText: 'Your name',
-                  hintStyle: TextStyle(
-                      color: Colors.grey, fontFamily: 'RobotoSlab'),
+                  hintStyle:
+                      TextStyle(color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(13),
-                    ),
-                    borderSide: BorderSide(color: Colors.orangeAccent
-                  ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(13),
+                      ),
+                      borderSide: BorderSide(color: Colors.orangeAccent)),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
@@ -210,7 +210,7 @@ class _FeedbackState extends State<FeedbackPage> {
                   onTap: () => launchUrl("https://github.com/mashneh"),
                   child: Icon(
                     FontAwesomeIcons.github,
-                    color: Colors.greenAccent
+                    color: Colors.greenAccent,
                     size: 35,
                   ),
                 ),
