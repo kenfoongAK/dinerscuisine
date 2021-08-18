@@ -174,14 +174,14 @@ class Page extends State<MinePage> {
                   children: [
                     Text("Diners center",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.green,
                           fontSize: 18,
                         )),
                     Expanded(child: Container()),
                     Text("All",
                         style: TextStyle(
                           fontSize: 13,
-                          color: Colors.green,
+                          color: Colors.white,
                         )),
                     Icon(
                       Icons.arrow_forward_ios,
