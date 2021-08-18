@@ -39,7 +39,7 @@ class Page extends State<MinePage> {
         body: ListView(children: <Widget>[
       Container(
           alignment: Alignment.center,
-          color: Colors.black,
+          color: Colors.white,
           height: 80,
           child: Text(
             'Me',
@@ -174,7 +174,7 @@ class Page extends State<MinePage> {
                   children: [
                     Text("Diners center",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.green,
                           fontSize: 18,
                         )),
                     Expanded(child: Container()),
