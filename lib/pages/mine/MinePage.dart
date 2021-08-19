@@ -29,8 +29,8 @@ class Page extends State<MinePage> {
   Widget layout(BuildContext context) {
     return new Scaffold(
         // appBar: AppBar(
-        //   shadowColor: Colors.white,
-        //   backgroundColor: Colors.white,
+        //   backgroundColor: Color.fromARGB(255, 104, 47, 157),
+        //    shadowColor: Colors.white,
         //   title: Text(
         //     'Me',
         //     style: TextStyle(color: Colors.white),
@@ -44,7 +44,7 @@ class Page extends State<MinePage> {
           child: Text(
             'Me',
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 25),
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
           )),
       Container(
           color: Colors.white,
