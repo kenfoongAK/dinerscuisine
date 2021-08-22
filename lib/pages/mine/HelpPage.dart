@@ -26,21 +26,21 @@ class Page extends State<HelpPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        ExpansionPanelList(
-  expansionCallback: (int index, bool isExpanded) {},
-  children: [
-    ExpansionPanel(
-      headerBuilder: (BuildContext context, bool isExpanded) {
-        return ListTile(
-          title: Text('Help'),
-        );
-      },
-      body: ListTile(
-        title: Text('how to be a teacher/tutor'),
-        subtitle: Text('go to be a teacher/tutor'),
-      ),
-      isExpanded: true,
-    ),
-        ));
+        body: ExpansionPanelList(
+            expansionCallback: (int index, bool isExpanded) {},
+            children: [
+              ExpansionPanel(
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: Text('Help'),
+                  );
+                },
+                body: ListTile(
+                  title: Text('how to be a teacher/tutor'),
+                  subtitle: Text('go to be a teacher/tutor'),
+                ),
+                isExpanded: true,
+              ),
+            ]));
   }
 }

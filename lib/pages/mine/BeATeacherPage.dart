@@ -1,8 +1,13 @@
 // ignore: file_names
 // ignore: file_names
+import 'dart:convert';
+
+import 'package:demo2/pages/mine/SuccessPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class BeATeacherPage extends StatefulWidget {
   @override
@@ -30,6 +35,7 @@ class _BeATeacherState extends State<BeATeacherPage> {
 
   TextEditingController t1 = TextEditingController();
   TextEditingController t2 = TextEditingController();
+  TextEditingController t3 = TextEditingController();
   late String name;
   late String email;
   late String message;
@@ -39,7 +45,8 @@ class _BeATeacherState extends State<BeATeacherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar( backgroundColor: Color.fromARGB(255, 104, 47, 157),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 104, 47, 157),
         title: Text("Be A Teacher"),
       ),
       body: Padding(
@@ -67,17 +74,20 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding: const EdgeInsets.all(12.0),
               child: TextField(
                 onChanged: (val) {
-                  if (val != null || val.length > 0) name = val;
+                  if (val != null || val.length > 0) {
+                    name = val;
+                  }
                 },
+                textAlign: TextAlign.start,
                 controller: t1,
                 decoration: InputDecoration(
                   fillColor: Color(0xffe6e6e6),
                   filled: true,
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 16, horizontal: 22),
-                  hintText: 'Your name',
-                  hintStyle: TextStyle(
-                      color: Colors.grey, fontFamily: 'RobotoSlab'),
+                  hintText: 'Email',
+                  hintStyle:
+                      TextStyle(color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
@@ -106,7 +116,9 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding: const EdgeInsets.all(12),
               child: TextField(
                 onChanged: (val) {
-                  if (val != null || val.length > 0){ message = val;}
+                  if (val != null || val.length > 0) {
+                    message = val;
+                  }
                 },
                 textAlign: TextAlign.start,
                 controller: t2,
@@ -114,10 +126,10 @@ class _BeATeacherState extends State<BeATeacherPage> {
                   fillColor: Color(0xffe6e6e6),
                   filled: true,
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 35, horizontal: 20),
-                  hintText: 'Your email',
-                  hintStyle: TextStyle(
-                      color: Colors.grey, fontFamily: 'RobotoSlab'),
+                      EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                  hintText: 'Username',
+                  hintStyle:
+                      TextStyle(color: Colors.grey, fontFamily: 'RobotoSlab'),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(13),
@@ -146,10 +158,12 @@ class _BeATeacherState extends State<BeATeacherPage> {
               padding: const EdgeInsets.all(12),
               child: TextField(
                 onChanged: (val) {
-                  if (val != null || val.length > 0) {message = val;}
+                  if (val != null || val.length > 0) {
+                    message = val;
+                  }
                 },
                 textAlign: TextAlign.start,
-                controller: t2,
+                controller: t3,
                 decoration: InputDecoration(
                   fillColor: Color(0xffe6e6e6),
                   filled: true,
@@ -191,51 +205,79 @@ class _BeATeacherState extends State<BeATeacherPage> {
               ),
               margin: EdgeInsets.symmetric(horizontal: 12.0),
               child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    t1.clear();
-                    t2.clear();
-                    launchUrl(
-                        "mailto:mashneh@gmail.com?subject=From $name&body=$message");
-                  });
-                },
-                child: ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Center(
-                          child: Icon(
-                        Icons.send,
-                        color: Colors.white,
-                      )),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.05,
+                  onTap: () {
+                    setState(() {
+                      t1.clear();
+                      t2.clear();
+                      launchUrl(
+                          "mailto:mashneh@gmail.com?subject=From $name&body=$message");
+                    });
+                  },
+                  child: InkWell(
+                    onTap: () {
+                      submit();
+                    },
+                    child: ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                              child: Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          )),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05,
+                          ),
+                          Center(
+                              child: Text(
+                            "Submit",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'RobotoSlab'),
+                          )),
+                        ],
                       ),
-                      Center(
-                          child: Text(
-                        "Submit",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white, fontFamily: 'RobotoSlab'),
-                      )),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
+                  )),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.06,
             ),
-            Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.06,
-                    left: 6,
-                    right: 6,
-                    bottom: MediaQuery.of(context).size.height * 0.03),
-                child: Text("")),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> submit() async {
+    EasyLoading.show(status: 'loading...');
+
+    var headers = {
+      'Authorization': 'Basic bTRoU0gya0lqVFhOV0hmNUVXOng=',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request(
+        'POST', Uri.parse('https://vanguardii.freshdesk.com/api/v2/tickets'));
+    request.body = json.encode({
+      "email": t1.text,
+      "subject": "Be A Teacher(" + t2.text + ")",
+      "description": t3.text,
+      "status": 2,
+      "priority": 1
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      EasyLoading.dismiss();
+      Navigator.pop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SuccessPage()));
+      // print(await response.stream.bytesToString());
+    } else {
+      EasyLoading.dismiss();
+    }
   }
 }
