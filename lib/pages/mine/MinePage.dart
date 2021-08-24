@@ -39,7 +39,7 @@ class Page extends State<MinePage> {
         body: ListView(children: <Widget>[
       Container(
           alignment: Alignment.center,
-          color: Colors.white,
+          color: Colors.purple,
           height: 80,
           child: Text(
             'Me',
