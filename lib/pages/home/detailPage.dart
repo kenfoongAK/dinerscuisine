@@ -85,7 +85,7 @@ class Page extends State<DetailPage> {
         Container(
           padding: EdgeInsets.only(left: 20, right: 40),
           child: Text(
-            "不要传统蛋黄酥新品全麦低糖七种口味蛋黄酥上市",
+            "不要传统蛋黄酥新品全麦低糖七种口味蛋黄酥上市,在这里新增打赏",
             style: TextStyle(
                 color: Color.fromARGB(255, 104, 47, 157),
                 fontSize: 16,
